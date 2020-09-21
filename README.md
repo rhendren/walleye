@@ -1,34 +1,25 @@
-# A simple Sapper/Svelte TODO application
+# Walleye Demo
 
-Built for [this tutorial](https://chrisboakes.com/getting-started-with-sapper-and-svelte/).
+## Forms
 
-## Running the project
+We use Google Forms to collect customer information.
 
-Install the dependencies and run the project:
+## Databases
 
-```bash
-npm install # or yarn
-npm run dev
-```
+We save customer responses in Google Sheets.
 
-You should see the project running on [localhost:3000](http://localhost:3000).
+## Filtering
 
-## Static rendering
+We provide a table for you to choose customers from
 
-Run:
+## Messaging
 
-```bash
-npm run export
-```
+We use CallFire to send SMS messages
 
-Your compiled project will now sit in `__sapper__/export`.
+## Account Management
 
-## Deploying to Netlify
+We use Firebase to manage your account and registration.
 
-If you'd like to host your static build on Netlify, it's extremely simple:
+## Payment
 
-- Log in to your [Netlify](https://www.netlify.com/) account
-- Create a new site from Git and select your repository
-- Select your branch
-- Set the build command as `npm run export`
-- Set the publish directory as `__sapper__/export`
+We use Square to securely process payments.
