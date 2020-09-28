@@ -1,5 +1,5 @@
 <script>
-    import {sendText} from './sms.js';
+    import SMS from './SMS.svelte';
     export let rows;
     export let columns;
 
@@ -36,7 +36,7 @@
             }
         }
     });
-
+    $: customerNumbers = availRows.map((entry) => entry[0]);
     let txtMessage;
 
 </script>
@@ -78,4 +78,4 @@
 
 <h2 align='left'>Are You Ready?</h2>
 
-<button on:click|once={sendText}>Submit</button>
+<SMS {customerNumbers} {txtMessage} />
