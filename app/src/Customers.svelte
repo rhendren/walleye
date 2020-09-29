@@ -5,10 +5,10 @@
 
     let rows = [];
     let columns = ['phone'];
-    var data_ref = db.ref(uid);
+    var customer_ref = db.ref('users/' + uid + '/customers');
 
     var row_index = 0;
-    data_ref.orderByKey().on("child_added", function(data) {
+    customer_ref.orderByKey().on("child_added", function(data) {
         var row = [];
         row.push(data.key);
         row = row;
@@ -26,7 +26,6 @@
         rows = rows;
     });
 </script>
-
 
 
 {#if rows.length != 0}

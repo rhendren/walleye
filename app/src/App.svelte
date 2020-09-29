@@ -1,6 +1,7 @@
 <script>
   import { FirebaseApp, User } from "sveltefire";
   import Customers from './Customers.svelte';
+  import Form from './Form.svelte';
 
   import firebase from "firebase/app";
   import "firebase/database";
@@ -21,6 +22,7 @@
 
   let email = '';
   let password = '';
+  let db = firebase.database();
 
   function signUp() {
     firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
@@ -29,6 +31,9 @@
       var errorMessage = error.message;
       // ...
     });
+    var user = firebase.auth().currentUser;
+    console.log(user);
+    console.log('signed up');
   }
 
   function signIn() {
@@ -39,28 +44,59 @@
       // ...
     });
   }
+
+//   firebase.auth().onAuthStateChanged(function(user) {
+//     if (user) {
+//       const user_ref = db.ref('users/' + user.uid);
+//       const d = new Date();
+//       const t = d.getTime();
+//       let exists = false;
+//       user_ref.on('child_added', function(s) {
+//           console.log(s);
+//           if (s.exists()) {
+//               exists = true;
+//               exists = exists;
+//               console.log('should be true');
+//               console.log(exists);
+//           }
+//       });
+//       console.log('finally');
+//       console.log(exists);
+//       if (exists == false) {
+//         console.log(exists == false);
+//           user_ref.set({
+//             signed_up_at: t
+//           });
+//       }
+//     } else {
+      
+//     }
+// });
 </script>
 
 <main>
 
   <FirebaseApp {firebase}>
 
-    <h1>💪🔥 Welcome to Walleye</h1>
-
-    <p>We are in <strong>development</strong>; we appreciate your patience!</p>
+    <h1>🐟 Walleye SMS Marketing 📱</h1>
 
     <User let:user let:auth>
-      Howdy 😀! User
-      <em>{user.uid}</em>
+      Welcome to the <em>Walleye</em> family 😀!
+      <br>
+      <br>
 
       <button on:click={() => auth.signOut()}>Sign Out</button>
 
       <div slot="signed-out">
-
-        Email<br>
+        We are in <em>development</em>; we appreciate your patience!
+        <br>
+        <br>
+        Email
         <input type="email" bind:value={email}>
-        Password<br>
+        <br>
+        Password
         <input type="password" bind:value={password}>
+        <br>
 
         <button on:click={signUp}>
           Sign Up
@@ -70,9 +106,14 @@
         </button>
       </div>
 
+      User: {user.uid}
+
+
+
       <hr />
 
-      <Customers uid={user.uid} db={firebase.database()}/>
+      <Form uid={user.uid} {db}/>
+      <Customers uid={user.uid} {db}/>
 
     </User>
   </FirebaseApp>
@@ -91,7 +132,7 @@
 
   h1,
   em {
-    color: #ff3e00;
+    color: #29e094;
   }
 
   hr {
