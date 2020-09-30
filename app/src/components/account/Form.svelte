@@ -1,6 +1,6 @@
 <script>
-    export let uid;
-    export let db;
+    // export let uid;
+    // export let db;
 
     // const user_ref = db.ref('users/' + uid);
     // const d = new Date();
